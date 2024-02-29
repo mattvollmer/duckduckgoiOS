@@ -1,3 +1,4 @@
+Hello world
 This style guide was originally forked from [The official raywenderlich.com Swift Style Guide](https://github.com/raywenderlich/swift-style-guide)
 ## Table of Contents
 
