@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build:
+
+    # Specify the Xcode version to use
+    macos:
+      xcode: "15.2.0"
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Bitrise CLI
+          command: |
+            set -ex
+            brew update && brew install bitrise
+            bitrise setup
+
+      - run:
+          name: bitrise run primary
+          command: bitrise run primary
+          environment:
+            CI: "true"
+
+      # Collect XML test results data to show in the UI,
+      # and save the same XML files under test-results folder
+      # in the Artifacts tab
+      - store_test_results:
+          path: test_output/report.xml
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: scan-test-results
+      - store_artifacts:
+          path: ~/Library/Logs/scan
+          destination: scan-logs
