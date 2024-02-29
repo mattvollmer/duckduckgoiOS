@@ -5,6 +5,7 @@ workflows:
   archive_and_export_app:
     summary: Run your Xcode tests and create an IPA file to install your app on a device or share it with your team.
     description: The workflow will first clone your Git repository, cache and install your project's dependencies if any, run your Xcode tests, export an IPA file from the project and save it.
+    runs-on: macos-14
     steps:
     - git-clone@8: {}
     - xcode-test@5:
@@ -51,10 +52,6 @@ workflows:
     - xcode-test@5: {}
     - save-spm-cache@1: {}
     - deploy-to-bitrise-io@2: {}
-meta:
-  bitrise.io:
-    stack: osx-xcode-15.2.x
-    machine_type_id: g2-m1-max.5core
 app:
   envs:
   - opts:
